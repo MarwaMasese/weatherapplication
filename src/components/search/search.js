@@ -11,13 +11,15 @@ const Search = ({ onSearchChange }) => {
         return fetch(`${GEO_API_URL}/cities?minPopulation=100000&namePrefix=${inputValue}`, geoApiOptions)
             .then(response => response.json())
             .then((response) =>{
+                return{
                 options: response.data.map((city)=>{
                     return {
                         value:`${city.latitude} ${city.longitude}`,
                         label:`${city.name}, ${city.countrycode}`
                     }
                 })
-            } )
+            }
+         } )
             .catch(err => console.error(err));
 
     }
